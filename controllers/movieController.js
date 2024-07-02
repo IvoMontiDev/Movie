@@ -4,8 +4,8 @@ const db = require('../database/conexion');
 
 const getAllMovies = async (req, res) => {
     try {
-        const movies = await sequelize.query('CALL GetAllMovies()', {
-            type: sequelize.QueryTypes.SELECT,
+        const [movies, metadata] = await db.query('CALL GetAllMovies()', {
+            type: db.QueryTypes.SELECT,
             model: Movie,
             mapToModel: true
         });
@@ -16,10 +16,6 @@ const getAllMovies = async (req, res) => {
         res.status(500).json({ error: 'Error al obtener todas las películas' });
     }
 };
-
-module.exports = { getAllMovies };
-
-
 
 const getMovieById = async (req, res) => {
     try {
