@@ -1,7 +1,12 @@
+    const DB_HOST = 'mysql-ivomontidev.alwaysdata.net';
+    const DB_USER = '367140';
+    const DB_PASS = 'ivomonti1';
+    const DB_NAME = 'ivomontidev_movies';
+
     const { Sequelize } = require('sequelize');
 
-    const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
-    host: process.env.DB_HOST,
+    const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
+    host: DB_HOST,
     dialect: 'mysql',
     });
 
