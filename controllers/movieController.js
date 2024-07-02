@@ -3,6 +3,7 @@ const db = require('../database/conexion');
 
 const getAllMovies = async (req, res) => {
     try {
+        console.log("hola")
         const [movies, metadata] = await db.query('CALL GetAllMovies()', {
             type: db.QueryTypes.SELECT
         });
