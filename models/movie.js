@@ -1,5 +1,6 @@
+
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection'); // Asegúrate de que la conexión esté importada correctamente
+const sequelize = require('../database/conexion');
 
 const Movie = sequelize.define('Movie', {
     id: {
@@ -36,8 +37,8 @@ const Movie = sequelize.define('Movie', {
         allowNull: true
     }
 }, {
-    tableName: 'movies', // Asegúrate de que el nombre de la tabla sea correcto aquí
-    timestamps: false // Si no tienes campos de timestamps (createdAt, updatedAt)
+    tableName: 'movies',
+    timestamps: false
 });
 
 module.exports = Movie;
