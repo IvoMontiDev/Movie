@@ -1,19 +1,12 @@
 const Movie = require('../models/movie');
 const db = require('../database/conexion');
 
-
 const getAllMovies = async (req, res) => {
     try {
-        const [movies, metadata] = await db.query('CALL GetAllMovies()', {
-            type: db.QueryTypes.SELECT,
-            model: Movie,
-            mapToModel: true
-        });
-
+        const movies = await Movie.findAll();
         res.json(movies);
     } catch (error) {
-        console.error('Error al obtener todas las películas:', error);
-        res.status(500).json({ error: 'Error al obtener todas las películas' });
+        res.status(500).json({ error: error.message });
     }
 };
 
