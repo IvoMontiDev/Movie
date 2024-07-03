@@ -33,7 +33,7 @@ const getMovieById = async (req, res) => {
 const createMovie = async (req, res) => {
     try {
         // Obtener los datos del cuerpo de la solicitud
-        const { title, description, release_date, director, cast, minimum_age, genre_id, poster_url } = req.body;
+        const { title, description, release_date, poster_url, director, cast, minimum_age, genre_id  } = req.body;
         
         // Logging the request body to debug
         console.log('Request Body:', req.body);
