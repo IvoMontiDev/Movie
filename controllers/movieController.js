@@ -1,5 +1,6 @@
 const Movie = require('../models/movie');
 const db = require('../database/conexion');
+const { sequelize } = require('../database/conexion');
 
 const getAllMovies = async (req, res) => {
     try {
