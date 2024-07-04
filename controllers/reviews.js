@@ -7,6 +7,7 @@ const getAllReviews = async (req, res) => {
     try {
         const reviews = await db.query('CALL GetReviews');
         res.json(reviews);
+        console.log(reviews);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
