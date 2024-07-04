@@ -110,14 +110,19 @@ const updateMovie = async (req, res) => {
 const deleteMovie = async (req, res) => {
     try {
         const { id } = req.params;
-        const deleted = await Movie.destroy({ where: { id } });
-        if (deleted) {
-            res.status(204).json({ message: 'Película eliminada exitosamente' });
-        } else {
-            res.status(404).json({ error: 'Película no encontrada' });
-        }
+
+        // Llamada al procedimiento almacenado
+        await sequelize.query('CALL DeleteMovie(:movieId)', {
+            replacements: { movieId: id }
+        });
+
+        res.status(204).json({ message: 'Película eliminada exitosamente' });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        if (error.name === 'SequelizeForeignKeyConstraintError') {
+            res.status(404).json({ error: 'Película no encontrada o tiene relaciones dependientes.' });
+        } else {
+            res.status(500).json({ error: error.message });
+        }
     }
 };
 
