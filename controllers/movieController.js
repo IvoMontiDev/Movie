@@ -1,6 +1,5 @@
 const Movie = require('../models/movie');
 const db = require('../database/conexion');
-const { sequelize } = require('../database/conexion');
 
 const getAllMovies = async (req, res) => {
     try {
@@ -112,8 +111,7 @@ const deleteMovie = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Llamada al procedimiento almacenado
-        await sequelize.query('CALL DeleteMovie(:movieId)', {
+        await db.query('CALL DeleteMovie(:movieId)', {
             replacements: { movieId: id }
         });
 
